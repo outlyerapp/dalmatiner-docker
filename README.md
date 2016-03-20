@@ -4,7 +4,7 @@ A container built to play with Dalmatiner DB. Not meant for production use.
 
 Contains: DalmatinerDB, Dalmatiner-FrontEnd, Grafana, Dalmatiner-Grafana-Plugin, Dalmatiner-Graphite, StatsD
 
-Exposes Ports:
+### Exposes Ports:
 
 3000  (Grafana Web)
 
