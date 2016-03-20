@@ -1,3 +1,2 @@
 #!/bin/sh
-ulimit -n 65536
-exec su - dalmatiner -c "/usr/lib/ddb/bin/ddb console -noinput +Bd >>/var/log/ddb/ddb.log 2>&1"
+exec gosu dalmatiner /usr/lib/ddb/bin/ddb console -noinput +Bd >>/var/log/ddb/ddb.log 2>&1

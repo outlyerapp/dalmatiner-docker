@@ -1,2 +1,2 @@
 #!/bin/sh
-exec su - dalmatiner -c "/usr/lib/dfe/bin/dalmatinerfe console -noinput +Bd >>/var/log/ddb/dfe.log 2>&1"
+exec gosu dalmatiner /usr/lib/dfe/bin/dalmatinerfe console -noinput +Bd >>/var/log/ddb/dfe.log 2>&1
