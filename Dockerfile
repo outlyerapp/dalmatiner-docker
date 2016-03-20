@@ -34,5 +34,8 @@ RUN apt-get update && \
     chmod +x /usr/sbin/gosu && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
+RUN mkdir /etc/service/grafana
+ADD grafana.run /etc/service/grafana/run
+
 EXPOSE 3000
 
