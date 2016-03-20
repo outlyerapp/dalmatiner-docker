@@ -12,6 +12,8 @@ Contains: DalmatinerDB, Dalmatiner-FrontEnd, Grafana, Dalmatiner-Grafana-Plugin,
 
 8125  (StatsD Port)
 
+5555  (Dalmatiner TCP)
+
 8080  (Dalmatiner FrontEnd)
 
 To send metrics in configure a StatsD client to connect to localhost:8125. Alternatively, configure collectors with a
@@ -25,6 +27,8 @@ docker run \
   -p 3000:3000 \
   -p 2003:2003 \
   -p 8125:8125 \
+  -p 5555:5555 \
+  -p 8080:8080 \
   --name=dalmatiner-docker \
   dataloop/dalmatiner-docker
 ```

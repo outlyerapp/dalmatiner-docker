@@ -13,6 +13,7 @@ RUN curl -s -L https://github.com/dataloop/dalmatinerdb/releases/download/v0.1.6
 ADD etc/ddb/ddb.conf /etc/ddb/ddb.conf
 RUN mkdir /etc/service/ddb
 ADD ddb.run /etc/service/ddb/run
+EXPOSE 5555
 
 # Install DFE
 RUN curl -s -L https://github.com/dataloop/dalmatiner-frontend/releases/download/v0.1.6-b45/dalmatiner-frontend_0.1.6-b45_amd64.deb -o /tmp/dfe.deb && \
@@ -36,6 +37,5 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN mkdir /etc/service/grafana
 ADD grafana.run /etc/service/grafana/run
-
 EXPOSE 3000
 
