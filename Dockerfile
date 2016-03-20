@@ -31,6 +31,9 @@ RUN apt-get update && \
     curl -s https://grafanarel.s3.amazonaws.com/builds/grafana_2.6.0_amd64.deb -o /tmp/grafana.deb && \
     dpkg -i /tmp/grafana.deb && \
     rm /tmp/grafana.deb && \
+    curl -s -L https://github.com/dataloop/dalmatiner-grafana-plugin/releases/download/15/dalmatiner-grafana-plugin_15_amd64.deb -o /tmp/grafana-plugin.deb && \
+    dpkg -i /tmp/grafana-plugin.deb && \
+    rm /tmp/grafana-plugin.deb && \
     curl -s -L https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64 -o /usr/sbin/gosu && \
     chmod +x /usr/sbin/gosu && \
     apt-get autoremove -y && \
