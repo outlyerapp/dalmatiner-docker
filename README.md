@@ -12,6 +12,8 @@ Contains: DalmatinerDB, Dalmatiner-FrontEnd, Grafana, Dalmatiner-Grafana-Plugin,
 
 8125  (StatsD Port)
 
+8080  (Dalmatiner FrontEnd)
+
 To send metrics in configure a StatsD client to connect to localhost:8125. Alternatively, configure collectors with a
 Graphite backend to localhost:2003. To view metrics connect to http://localhost:3000 and use admin / admin to login.
 

@@ -18,6 +18,10 @@ ADD ddb.run /etc/service/ddb/run
 RUN curl -s -L https://github.com/dataloop/dalmatiner-frontend/releases/download/v0.1.6-b45/dalmatiner-frontend_0.1.6-b45_amd64.deb -o /tmp/dfe.deb && \
     dpkg -i /tmp/dfe.deb &&\
     rm /tmp/dfe.deb
+ADD etc/dfe/dfe.conf /etc/dfe/dfe.conf
+RUN mkdir /etc/service/dfe
+ADD dfe.run /etc/service/dfe/run
+EXPOSE 8080
 
 # Install Grafana
 RUN apt-get update && \
@@ -30,6 +34,5 @@ RUN apt-get update && \
     chmod +x /usr/sbin/gosu && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
-VOLUME ["/var/lib/grafana", "/var/log/grafana", "/etc/grafana"]
 EXPOSE 3000
 
