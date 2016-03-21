@@ -45,7 +45,7 @@ ADD grafana.run /etc/service/grafana/run
 EXPOSE 3000
 
 # Install Dalmatiner-Graphite
-RUN pip install ddbgraphite
+RUN pip install ddbgraphite==0.0.8
 RUN mkdir /etc/service/ddbgraphite
 ADD ddbgraphite.run /etc/service/ddbgraphite/run
 EXPOSE 2003
