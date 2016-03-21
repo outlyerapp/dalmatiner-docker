@@ -4,6 +4,8 @@ A container built to play with Dalmatiner DB. Not meant for production use.
 
 Contains: DalmatinerDB, Dalmatiner-FrontEnd, Grafana, Dalmatiner-Grafana-Plugin, Dalmatiner-Graphite, StatsD
 
+Warning! Everything is stored in the container so you should consider any data or dashboards to be ephemeral
+
 ### Exposes Ports:
 
 3000  (Grafana Web)
@@ -18,6 +20,9 @@ Contains: DalmatinerDB, Dalmatiner-FrontEnd, Grafana, Dalmatiner-Grafana-Plugin,
 
 To send metrics in configure a StatsD client to connect to localhost:8125. Alternatively, configure collectors with a
 Graphite backend to localhost:2003. To view metrics connect to http://localhost:3000 and use admin / admin to login.
+
+If you are running docker-machine you will need to send metrics into your $DOCKER_HOST IP in addition to changing the
+Dalmatiner data source in Grafana.
 
 ## Getting Started
 
