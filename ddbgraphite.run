@@ -1,0 +1,2 @@
+#!/bin/sh
+exec gosu dalmatiner /usr/local/bin/ddbgraphite >>/var/log/ddb/ddbgraphite.log 2>&1

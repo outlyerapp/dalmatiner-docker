@@ -1,0 +1,2 @@
+#!/bin/sh
+exec gosu dalmatiner /usr/bin/nodejs /statsd/stats.js /etc/statsd/config.js >>/var/log/statsd.log 2>&1

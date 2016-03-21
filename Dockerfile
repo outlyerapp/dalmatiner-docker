@@ -24,21 +24,41 @@ RUN mkdir /etc/service/dfe
 ADD dfe.run /etc/service/dfe/run
 EXPOSE 8080
 
-# Install Grafana
+# Install Apt Packages
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install libfontconfig ca-certificates && \
+    apt-get -y --no-install-recommends install build-essential libfontconfig ca-certificates python-pip npm git && \
     apt-get clean && \
-    curl -s https://grafanarel.s3.amazonaws.com/builds/grafana_2.6.0_amd64.deb -o /tmp/grafana.deb && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Grafana
+RUN curl -s https://grafanarel.s3.amazonaws.com/builds/grafana_2.6.0_amd64.deb -o /tmp/grafana.deb && \
     dpkg -i /tmp/grafana.deb && \
     rm /tmp/grafana.deb && \
     curl -s -L https://github.com/dataloop/dalmatiner-grafana-plugin/releases/download/15/dalmatiner-grafana-plugin_15_amd64.deb -o /tmp/grafana-plugin.deb && \
     dpkg -i /tmp/grafana-plugin.deb && \
     rm /tmp/grafana-plugin.deb && \
     curl -s -L https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64 -o /usr/sbin/gosu && \
-    chmod +x /usr/sbin/gosu && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
+    chmod +x /usr/sbin/gosu
 RUN mkdir /etc/service/grafana
 ADD grafana.run /etc/service/grafana/run
 EXPOSE 3000
+
+# Install Dalmatiner-Graphite
+RUN pip install ddbgraphite
+RUN mkdir /etc/service/ddbgraphite
+ADD ddbgraphite.run /etc/service/ddbgraphite/run
+EXPOSE 2003
+
+# Install StatsD
+RUN curl -s -L https://github.com/etsy/statsd/archive/v0.7.2.tar.gz -o /statsd.tgz && \
+    mkdir /statsd && \
+    tar xfz statsd.tgz -C /statsd --strip-components 1 && \
+    rm /statsd.tgz && \
+    cd /statsd && npm install && \
+    mkdir /etc/statsd
+ADD etc/statsd/config.js /etc/statsd/config.js
+RUN mkdir /etc/service/statsd
+ADD statsd.run /etc/service/statsd/run
+EXPOSE 8125
 
