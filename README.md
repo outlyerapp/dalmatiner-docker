@@ -37,3 +37,15 @@ docker run \
   --name=dalmatiner-docker \
   dataloop/dalmatiner-docker
 ```
+
+## Other bits of trivia
+
+There is a setting in ddb.conf that controls how many points are stored in memory before being flushed to disk.
+
+```
+cache_points = 10
+```
+
+The container has this set to 10 seconds. You may want to increase that if you send a lot of metrics in. Sane defaults are 60 or 600
+seconds depending on how many points.
+
